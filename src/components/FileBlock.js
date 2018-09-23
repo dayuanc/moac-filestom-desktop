@@ -106,6 +106,12 @@ export default class FileBlock extends Component {
           { typeof this.props.remove === 'function' &&
             <IconButton icon='trash' color='#F44336' onClick={this.delete} />
           }
+          { typeof this.props.remove === 'function' &&
+            <IconButton icon='face-smile' color='#36f436' onClick={this.delete} />
+          }
+          { typeof this.props.remove === 'function' &&
+            <IconButton icon='face-sad' color='#36f436' onClick={this.delete} />
+          }
         </div>
       )
     }
