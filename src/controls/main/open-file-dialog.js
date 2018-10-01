@@ -1,6 +1,9 @@
 import {dialog, ipcMain} from 'electron'
 import uploadFiles from '../utils/upload-files'
 
+// current filestom doesn't support dialog update.
+import duplicateFiles from '../utils/duplicate-files-into-filestom'
+
 function openFileDialog (opts, dir = false) {
   let window = opts.window
 

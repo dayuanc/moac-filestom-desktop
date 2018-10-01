@@ -1,5 +1,6 @@
 import {ipcMain} from 'electron'
 import uploadFiles from '../utils/upload-files'
+import duplicateFiles from '../utils/duplicate-files-into-filestom'
 
 function basename (path) {
   const parts = path.split('/')
@@ -81,4 +82,6 @@ export default function (opts) {
 
   ipcMain.on('drop-files', uploadFiles(opts))
   menubar.tray.on('drop-files', uploadFiles(opts))
+  ipcMain.on('duplicate-files', duplicateFiles(opts))
+  menubar.tray.on('duplicate-files', duplicateFiles(opts))
 }
