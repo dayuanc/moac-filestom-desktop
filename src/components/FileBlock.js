@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import fileExtension from 'file-extension'
 import prettyBytes from 'pretty-bytes'
+import duplicateFiles from '../utils/duplicate-files-into-filestom'
 
 import Block from './Block'
 import Icon from './Icon'
@@ -97,6 +98,20 @@ export default class FileBlock extends Component {
           <Button text='Delete' onClick={this.remove} />
         </div>
       )
+    } else if (duplicateFiles.checkScsFileStatus(this.props.hash) == 'OFF') {
+      unwrapped = (
+        <div className='button-overlay'>
+          { typeof this.props.copy === 'function' &&
+            <IconButton icon='clipboard' onClick={this.copy} />
+          }
+          { typeof this.props.remove === 'function' &&
+            <IconButton icon='trash' color='#F44336' onClick={this.delete} />
+          }
+          { typeof this.props.remove === 'function' &&
+            <IconButton icon='face-sad' color='#36f436' onClick={this.delete} />
+          }
+        </div>
+      )
     } else {
       unwrapped = (
         <div className='button-overlay'>
@@ -108,9 +123,6 @@ export default class FileBlock extends Component {
           }
           { typeof this.props.remove === 'function' &&
             <IconButton icon='face-smile' color='#36f436' onClick={this.delete} />
-          }
-          { typeof this.props.remove === 'function' &&
-            <IconButton icon='face-sad' color='#36f436' onClick={this.delete} />
           }
         </div>
       )
